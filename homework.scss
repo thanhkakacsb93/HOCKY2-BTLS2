@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
+section{
+    width: 500px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+}
+.wraper{
+    height: 150px;
+    overflow: scroll;
+}
+.header{
+ position: sticky;
+ top: 0;
+}
+.add{
+    margin-bottom: 10px;
+}
+.boxSearch{
+    display: flex;
+    justify-content: space-between;
+}
+#shearch{
+    width: 70%;
+}
+.boxphone{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.line{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(80, 147, 206);
+    width: 380px;
+}
+.hide{
+    display: none;
+}
