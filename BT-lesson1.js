@@ -137,6 +137,7 @@ function homework4(){
     btnAdd.addEventListener(`click`, arr);
     // --tìm kiếm--
     btnShearch.addEventListener(`click`, search);
+    shearch.addEventListener(`input`, search);
     // ---xoá------
     btnDelete.addEventListener(`click`, dlt);
     // --------------------------------------------------------
@@ -145,6 +146,8 @@ function homework4(){
         let value = number.value;
         let frend = {[key]: value};
         bookphone.push(frend);
+        name.value=``;
+        number.value=``;
         arrange();
         addphone()
     }
@@ -191,7 +194,7 @@ function homework4(){
                 let key2 = Object.keys(bookphone[j]);
                 if(bookphone[i][key1[0]]==bookphone[j][key2[0]]){
                 bookphone.splice(j, 1);
-                i=i-1;
+                j=j-1;
                 }
             }
         }
