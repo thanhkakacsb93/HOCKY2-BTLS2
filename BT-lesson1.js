@@ -124,109 +124,102 @@ function find(){
 homework3();
 
 function homework4(){
-    let Phonelist = [];
-    // let phone = {};
+    let name = document.getElementById(`name`);
+    let number = document.getElementById(`number`);
     let btnAdd = document.getElementById(`btnAdd`);
-    btnAdd.addEventListener(`click`, add);
-    let clonekey;
-    let cloneobjectPhone;
-    let boxphone = document.querySelector(`.boxphone`);
-    let boxshearch = document.querySelector(`.boxshearch`);
-    // let btnDelete = document.querySelector(`.btnDelete`);
-    function add(){
-        
-        let name = document.getElementById(`name`).value;
-        let number = document.getElementById(`number`).value;
-        let phone = {[name]: number};
-            Phonelist.push(phone)
-        let objectPhone = Phonelist.reduce((a,b) => Object.assign(a,b), {});
-        cloneobjectPhone = {...objectPhone};
-        let key = Phonelist.map(itemt => Object.keys(itemt)).flat();
-            // key.sort();
-            key.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
-        // console.log(key);
-            clonekey=[...key];
-        // let boxphone = document.querySelector(`.boxphone`);
-            boxphone.innerHTML=``;
-        for(let i=0; i<key.length; i++){
-            let div4 = document.createElement(`div`);
-                div4.classList.add(`line`)
-            let span1 = document.createElement(`span`);
-                span1.innerHTML= key[i];
-                div4.appendChild(span1);
-            let span2 =document.createElement(`span`);
-                span2.innerHTML= objectPhone[key[i]]
-                div4.appendChild(span2)
-                boxphone.appendChild(div4);
-        }
-        // console.log(`sdvdv`, clonekey);
+    let shearch = document.getElementById(`shearch`);
+    let btnShearch = document.getElementById(`btnShearch`);
+    let btnDelete = document.getElementById(`btnDelete`);
+    let lisPhoneNumber = document.getElementById(`lisPhoneNumber`); 
+    let objDelete = [];
+    let bookphone =[];
+    // ------thêm-----
+    btnAdd.addEventListener(`click`, arr);
+    // --tìm kiếm--
+    btnShearch.addEventListener(`click`, search);
+    // ---xoá------
+    btnDelete.addEventListener(`click`, dlt);
+    // --------------------------------------------------------
+    function arr(){ //HÀM LẤY GIÁ TRỊ ĐỂ TẠO MẢNG//
+        let key = name.value;
+        let value = number.value;
+        let frend = {[key]: value};
+        bookphone.push(frend);
+        arrange();
+        addphone()
     }
-    // console.log(`ndgn`, clonekey);
-    //     //----tìm kiếm danh bạ---------
-    let btnShearch = document.getElementById(`btnShearch`)
-    btnShearch.addEventListener(`click`,search)
-    // let boxshearch = document.querySelector(`.boxshearch`);
-        function search(){
-            let valueShearch = document.getElementById(`shearch`).value;      
-            let arrShearch = [];
-            if(valueShearch!==""){ 
-                boxphone.classList.add(`hide`)
-
-                for(let i=0; i<clonekey.length; i++){
-                    if( clonekey[i].toUpperCase().includes(valueShearch.toUpperCase())){
-                        arrShearch.push(clonekey[i]);
+// -------------------------------------------------------
+    function search(){  //HÀM TÌM KIẾM//
+        let valueShearch = shearch.value;
+        if(valueShearch !== ``){
+            // -----bằng tên----------//
+            if(isNaN(valueShearch) == true){
+                for(let i =0; i<bookphone.length; i++ ){
+                    let key = Object.keys(bookphone[i]);
+                    if ( !key[0].toUpperCase().includes(valueShearch.toUpperCase())){
+                    objDelete.push(bookphone[i]);
+                    bookphone.splice(i, 1);
+                    i=i-1;
+                    }
+                } 
+            }
+            // -----bằng số-----(không thể tìm bằng ký tự đặc biệt) ---------
+            else{
+                for(let i =0; i<bookphone.length; i++ ){
+                    let vl = Object.values(bookphone[i])
+                    if ( !vl[0].toString().includes(valueShearch)){
+                        objDelete.push(bookphone[i]);
+                        bookphone.splice(i, 1);
+                        i=i-1;
                     }
                 }
-                boxshearch.innerHTML=``;
-                for(let k=0; k < arrShearch.length; k++){
-                    let div4 = document.createElement(`div`);
-                        div4.classList.add(`line`)
-                    let span1 = document.createElement(`span`);
-                        span1.innerHTML= arrShearch[k];
-                        div4.appendChild(span1);
-                    let span2 =document.createElement(`span`);
-                        span2.innerHTML= cloneobjectPhone[arrShearch[k]]
-                        div4.appendChild(span2)
-                        boxshearch.appendChild(div4);
+            }
+            addphone();
+        }
+        if(valueShearch==``){
+            bookphone.push(...objDelete);
+            objDelete.splice(0, objDelete.length );
+            arrange();
+            addphone()
+        }
+    }
+// ----------------------------------------------------------
+    function dlt(){ //HÀM XOÁ TRÙNG//
+        for(let i =0; i<bookphone.length; i++ ){
+            let key1 = Object.keys(bookphone[i])
+            for(let j = i+1; j<bookphone.length; j++ ){
+                let key2 = Object.keys(bookphone[j]);
+                if(bookphone[i][key1[0]]==bookphone[j][key2[0]]){
+                bookphone.splice(j, 1);
+                i=i-1;
                 }
             }
         }
-    
-    //     //  ---xoá trùng sô--
-    // let btnDelete = document.getElementById(`btnDelete`);
-    // btnDelete.addEventListener(`click`, deleteNumber);
-    // let arrnumber = [];
-    // function deleteNumber(){
-    //     for ( let i =0; i<clonekey.length; i++ ){
-    //         arrnumber.push(cloneobjectPhone[clonekey[i]])
-    //     }
-    //     // console.log(arrnumber);
-    //     for (let i = 0; i <  arrnumber.length; i++){
-    //         for ( let j = i+1; j < arrnumber.length; j++ ){
-    //             if(arrnumber[i]==arrnumber[j]){
-    //                 boxphone.classList.add(`hide`);
-    //                 boxshearch.classList.add(`hide`);
-    //                 delete cloneobjectPhone[clonekey[j]];
-    //                 clonekey.splice(j, 1);
-    //                 }
-    //             }
-    //         }
-    //         // let btnDelete = document.querySelector(`.btnDelete`);
-    //         for ( let i = 0; i<clonekey.length; i++ ){
-    //             let div4 = document.createElement(`div`);
-    //                     div4.classList.add(`line`)
-    //                 let span1 = document.createElement(`span`);
-    //                     span1.innerHTML= clonekey[i];
-    //                     div4.appendChild(span1);
-    //                 let span2 =document.createElement(`span`);
-    //                     span2.innerHTML= cloneobjectPhone[clonekey[i]];
-    //                     div4.appendChild(span2)
-    //                     btnDelete.appendChild(div4);
-
-            
-
-    //     }
-    // }
-
+        addphone();
+    }
+// --------------------------------------------------
+    function arrange(){ // HÀM SẮP XẾP//
+        bookphone.sort((a, b) => {
+        const A = Object.keys(a)[0].toUpperCase();
+        const B = Object.keys(b)[0].toUpperCase();
+        return A.localeCompare(B);
+        });
+    }
+// -----------------------------------------------------
+    function addphone(){ //HÀM HIỂN THỊ DANH SÁCH//
+        lisPhoneNumber.innerHTML=``
+        for(let i =0; i<bookphone.length; i++ ){
+            let key = Object.keys(bookphone[i]);
+            let div = document.createElement(`div`)
+                div.classList.add(`line`);
+                lisPhoneNumber.appendChild(div);
+            let span1 = document.createElement(`span`);
+                span1.innerHTML = key;
+                div.appendChild(span1);
+            let span2 = document.createElement(`span`);
+                span2.innerHTML= bookphone[i][key[0]];
+                div.appendChild(span2);
+        } 
+    }
 }
 homework4();

@@ -18,15 +18,16 @@ section{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    justify-content: center;
     align-items: center;
     border: 1px solid red;
 }
 .wraper{
-    height: 150px;
+    height: 300px;
     overflow: scroll;
+    background-color: white;
 }
 .header{
+background-color: white;
  position: sticky;
  top: 0;
 }
@@ -46,10 +47,16 @@ section{
     gap: 5px;
 }
 .line{
+    height: 25px;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(80, 147, 206);
+    align-items: center;
+    background-color: rgb(216, 223, 229);
     width: 380px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 4px;
 }
 .hide{
     display: none;

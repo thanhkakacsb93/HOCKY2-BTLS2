@@ -1,1 +1,73 @@
-*{margin:0;padding:0;box-sizing:border-box}body{display:flex;display:flex;flex-direction:column;gap:10px;justify-content:center;align-items:center}section{width:500px;padding:10px;display:flex;flex-direction:column;gap:10px;justify-content:center;align-items:center;border:1px solid red}.wraper{height:150px;overflow:scroll}.header{position:sticky;top:0}.add{margin-bottom:10px}.boxSearch{display:flex;justify-content:space-between}#shearch{width:70%}.boxphone{display:flex;flex-direction:column;gap:5px}.line{display:flex;justify-content:space-between;background-color:#5093ce;width:380px}.hide{display:none}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 500px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.wraper {
+  height: 300px;
+  overflow: scroll;
+  background-color: white;
+}
+
+.header {
+  background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.add {
+  margin-bottom: 10px;
+}
+
+.boxSearch {
+  display: flex;
+  justify-content: space-between;
+}
+
+#shearch {
+  width: 70%;
+}
+
+.boxphone {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.line {
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(216, 223, 229);
+  width: 380px;
+  margin-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 4px;
+}
+
+.hide {
+  display: none;
+}/*# sourceMappingURL=homework.css.map */
